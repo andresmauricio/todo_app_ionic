@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Pendientes
@@ -7,5 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item *ngFor="let item of todoServices.lista"
+              detail>
+      <ion-label>{{item.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addList()"  color="tertiary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

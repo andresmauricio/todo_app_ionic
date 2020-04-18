@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoService } from 'src/app/services/todo.service';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -8,6 +10,40 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class Tab1Page {
 
-  constructor(private todoServices: TodoService) {}
+  constructor(public todoServices: TodoService,
+    public alertController: AlertController,
+    private router: Router) { }
+
+  public async addList() {
+    const alert = await this.alertController.create({
+      header: 'Nueva Lista',
+      inputs: [
+        {
+          name: "title",
+          type: "text",
+          placeholder: "Nombre de la lista"
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancelar",
+          role: "cancel",
+          handler: () => {
+            console.log('Cancelar')
+          }
+        },
+        {
+          text: "Crear",
+          handler: (data: any) => {
+            if (data.title.length === 0) return;
+            const id = this.todoServices.createList(data.title);
+            this.router.navigate(['/tabs/tab1/add/', id]);
+
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
 }
