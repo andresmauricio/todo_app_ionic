@@ -28,6 +28,13 @@ export class TodoService {
      })
    }
 
+   public deleteList(list :List) {
+     this.lista = this.lista.filter(dataList => {
+       return dataList.id !== list.id;   
+     });
+     this.setStorage();
+   }
+
    public setStorage(): void {
     localStorage.setItem('data', JSON.stringify(this.lista));
    }

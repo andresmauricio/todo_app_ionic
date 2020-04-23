@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoService } from 'src/app/services/todo.service';
-import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -45,5 +45,4 @@ export class Tab1Page {
     });
     await alert.present();
   }
-
 }

@@ -28,6 +28,11 @@ export class AddPage implements OnInit {
     this.idList = this.activedRoute.snapshot.paramMap.get('id');
   }
 
+  public deleteTask(index: number) {
+    this.list.items.splice(index, 1);
+    this.todoServices.setStorage();
+  } 
+
   public addItem() {
     if (this.nameItem.length === 0) return;
 
